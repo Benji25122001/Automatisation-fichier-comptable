@@ -10,45 +10,44 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # Checkout du code depuis le repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Configuration de Python 3.9
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
 
-      # Installation de setuptools avec une version compatible
       - name: Install compatible setuptools version
         run: |
           python -m pip install --upgrade pip
           pip install setuptools==57.5.0  # Version stable de setuptools
 
-      # Installation de py2app
       - name: Install dependencies
         run: |
           pip install py2app
 
-      # Nettoyage des anciens fichiers de build
       - name: Clean previous builds
         run: |
           rm -rf build dist .tox .nox .coverage .hypothesis .pytest_cache
 
-      # Lister le contenu du répertoire avant le build
       - name: List contents before build
         run: |
           echo "Contenu avant build :"
           ls -la
 
-      # Construction de l'application avec py2app et journalisation détaillée
       - name: Build app with verbose logging
         run: |
           python setup.py py2app --verbose
 
-      # Lister le contenu du répertoire après le build
       - name: List contents after build
         run: |
           echo "Contenu après build :"
           ls -la
+
+      # Étape pour uploader l'artefact contenant l'application .app
+      - name: Upload built app as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: MonApplication
+          path: dist/MonApplication.app  # Remplace par le nom réel de ton application .app
