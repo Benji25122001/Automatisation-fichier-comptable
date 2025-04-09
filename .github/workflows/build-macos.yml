@@ -1,0 +1,28 @@
+name: Build macOS app
+
+on:
+  push:
+    branches:
+      - main  # Le workflow sera déclenché lors d'un push sur la branche "main"
+
+jobs:
+  build:
+    runs-on: macos-latest  # Utilise un runner macOS
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Récupère le code source du repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v2  # Installe Python
+        with:
+          python-version: '3.x'  # Spécifie la version de Python à utiliser
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Mets à jour pip
+          pip install py2app  # Installe py2app pour la création d'applications macOS
+
+      - name: Build app
+        run: |
+          python setup.py py2app  # Exécute la commande setup.py pour créer l'application macOS
