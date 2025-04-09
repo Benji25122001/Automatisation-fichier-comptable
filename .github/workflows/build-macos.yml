@@ -45,9 +45,9 @@ jobs:
           echo "Contenu après build :"
           ls -la
 
-      # Étape pour uploader l'artefact contenant l'application .app
+      # Utilisation de la version v3 de l'action upload-artifact
       - name: Upload built app as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: MonApplication
           path: dist/MonApplication.app  # Remplace par le nom réel de ton application .app
