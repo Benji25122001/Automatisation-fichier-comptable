@@ -15,9 +15,11 @@ Ce programme Python permet de convertir un fichier FEC (Fichier des Écritures C
 
 ## Détails techniques
 **1. Lecture du fichier FEC :**
+
 Le fichier FEC est lu avec la fonction detect_separator() qui détecte automatiquement le séparateur (soit un pipe (|) ou un tabulation (\t)), puis il est chargé avec pandas dans un DataFrame.
 
 **2. Interface graphique (Tkinter) :**
+
 Une entrée de texte permet à l'utilisateur de sélectionner un fichier FEC.
 
 Une liste déroulante (avec une barre de défilement) permet de choisir un ou plusieurs comptes parmi ceux présents dans le fichier.
@@ -27,27 +29,26 @@ Un bouton "Exporter en PDF" est activé lorsque l'utilisateur sélectionne au mo
 Les erreurs et messages de succès sont affichés via des boîtes de message (messagebox).
 
 **3. Exportation PDF :**
+
 Le programme utilise la bibliothèque reportlab pour générer le PDF. Voici les étapes de l'exportation :
 
 Un tableau est créé avec les colonnes suivantes :
 
-CompteNum : Numéro de compte.
-
-CompteLib : Libellé du compte.
-
-EcritureDate : Date de l'écriture.
-
-Credit : Montant crédité.
-
-Debit : Montant débité.
-
-Solde : Solde de l'écriture (débit - crédit).
+| Colonne | Description |
+|---------------|---------------|
+| CompteNum | Numéro de compte |
+| CompteLib | Libellé du compte |
+| EcritureDate | Date de l'écriture |
+| Credit | Montant crédité |
+| Debit | Montant débité |
+| Solde | Solde de l'écriture (débit - crédit) |
 
 Les lignes sont ajoutées pour chaque écriture, avec des styles personnalisés pour les titres de comptes et les totaux.
 
 Le tableau est formaté et stylisé pour améliorer la lisibilité dans le PDF.
 
 **4. Formatage du PDF :**
+
 En-têtes : Les en-têtes du tableau sont stylisés avec une police en gras et un fond gris.
 
 Lignes de compte : Les comptes sont indiqués avec une ligne spéciale, et les totaux sont mis en valeur avec un fond bleu clair.
@@ -55,9 +56,11 @@ Lignes de compte : Les comptes sont indiqués avec une ligne spéciale, et les t
 Gestion des textes longs : Si un libellé de compte est trop long, il est converti en paragraphe pour un affichage correct dans le tableau.
 
 **5. Calculs des totaux :**
+
 Pour chaque compte, le programme calcule le total des crédits, débits, et solde, et les affiche dans le tableau sous forme de ligne de total.
 
 ## Prérequis
+
 Avant d'exécuter ce programme, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 **Python 3.x**
